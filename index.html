@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dilshan — Marketplace P&L Work</title>
 <meta name="description" content="Dilshan — marketplace P&amp;L, merchant risk and payments work at CityMall.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://dilshanpoonia.github.io/">
+
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Dilshan">
+<meta property="og:title" content="Dilshan — Marketplace P&amp;L, risk &amp; payments">
+<meta property="og:description" content="Two years on the numbers behind a ₹300 Cr marketplace: contribution margin from 0% to 15%, an RTO risk model, a payout engine and the cash position that paces growth.">
+<meta property="og:url" content="https://dilshanpoonia.github.io/">
+<meta property="og:image" content="https://dilshanpoonia.github.io/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dilshan — Data Analyst. CM2 0 to 15%, ₹80 Cr revenue, ₹300 Cr NMV, 100+ merchants, 700K+ orders a month.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dilshan — Marketplace P&amp;L, risk &amp; payments">
+<meta name="twitter:description" content="Contribution margin from 0% to 15%, an RTO risk model, a payout engine and the cash position that paces growth.">
+<meta name="twitter:image" content="https://dilshanpoonia.github.io/preview.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Archivo:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
@@ -98,21 +115,28 @@
   nav.rule{display:flex;flex-wrap:wrap;gap:4px 26px;padding-block:10px;border-bottom:1px solid var(--hair)}
   nav.rule a{text-decoration:none}
   nav.rule a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+  nav.rule a.nav-cta{color:var(--neg);border-bottom:1px solid var(--neg);padding-bottom:2px}
+  nav.rule a.nav-cta:hover{color:var(--ink);border-color:var(--ink);text-decoration:none}
 
   /* ---------- statement head ---------- */
   .statement{padding-block:clamp(34px,6vw,60px) 30px;display:flex;flex-direction:column;gap:20px}
   .statement .lede{font-family:var(--display);font-size:clamp(1.15rem,2.4vw,1.42rem);line-height:1.45;color:var(--ink);max-width:36ch;font-weight:400}
   .statement .sub{color:var(--muted);max-width:62ch;font-size:16px}
 
-  .figures{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-  .figures div{padding:16px 16px 16px 0}
-  .figures div + div{border-left:1px solid var(--hair-soft);padding-left:16px}
+  .seeking{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:6px;
+    border-top:1px solid var(--hair);padding-top:14px;max-width:62ch}
+  .seeking .lbl{flex:none}
+  .seeking .v{font-family:var(--display);font-size:1.12rem;color:var(--ink);line-height:1.3}
+
+  .figures{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .figures div{padding:16px 14px 16px 0}
+  .figures div + div{border-left:1px solid var(--hair-soft);padding-left:14px}
   .figures .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(1rem,2.4vw,1.35rem)}
   .figures .k{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.35;font-family:var(--body)}
-  @media (max-width:720px){
-    .figures{grid-template-columns:1fr 1fr}
-    .figures div:nth-child(3){border-left:0;padding-left:0}
-    .figures div:nth-child(3),.figures div:nth-child(4){border-top:1px solid var(--hair-soft)}
+  @media (max-width:980px){
+    .figures{grid-template-columns:repeat(2,1fr)}
+    .figures div:nth-child(odd){border-left:0;padding-left:0}
+    .figures div:nth-child(n+3){border-top:1px solid var(--hair-soft)}
   }
 
   /* ---------- section ---------- */
@@ -241,6 +265,10 @@
   .colophon .say{max-width:38ch}
   .colophon .say p{color:var(--muted);font-size:15px;margin-top:9px}
 
+  a.pdf{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--neg);padding-bottom:1px}
+  a.pdf:hover{color:var(--neg)}
+  a.pdf::after{content:" ↗";font-family:var(--mono);font-size:11px;color:var(--muted)}
+
   :focus-visible{outline:2px solid var(--neg);outline-offset:2px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -262,6 +290,7 @@
   </header>
 
   <nav class="rule lbl">
+    <a class="nav-cta" href="dilshan-resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
     <a href="#method">Method</a>
     <a href="#home" data-nav="home">Work</a>
     <a href="#record">Record</a>
@@ -278,10 +307,12 @@
     <h1>I find where the money leaks, and I get it fixed.</h1>
     <p class="lede">Two years on the numbers behind a dropshipping and self-shipping marketplace — from a blank slate to ₹300 Cr of annualised NMV.</p>
     <p class="sub">I own margin, merchant risk and pricing decisions rather than dashboards about them: the contribution-margin framework the business runs on, the model that stops orders which were never going to deliver, and the payout engine that replaced settlement by hand.</p>
+    <p class="seeking"><span class="lbl">Seeking</span><span class="v">Business, analytics &amp; strategy roles</span></p>
   </section>
 
   <div class="figures">
     <div><div class="v pos">0% → 15%</div><div class="k">Contribution margin (CM2), 12 months</div></div>
+    <div><div class="v">₹80 Cr</div><div class="k">Revenue</div></div>
     <div><div class="v">₹300 Cr</div><div class="k">FY26 NMV on the platform</div></div>
     <div><div class="v">100+</div><div class="k">Merchants and D2C brands</div></div>
     <div><div class="v">700K+</div><div class="k">Orders analysed monthly</div></div>
@@ -356,6 +387,8 @@
       <dd>Marketplace and e-commerce economics, 3PL logistics, merchant risk, payments and settlements</dd>
       <dt class="lbl">Education</dt>
       <dd>Dual Degree (B.Tech + M.Tech), IIT Kharagpur, 2024</dd>
+      <dt class="lbl">Resume</dt>
+      <dd><a class="pdf" href="dilshan-resume.pdf" target="_blank" rel="noopener">Full one-page resume (PDF)</a></dd>
       <dt class="lbl">Elsewhere</dt>
       <dd>Department Representative, Career Development Centre, IIT Kharagpur (2021–22) · Selected for Amazon ML Summer School, 2022 · Data Analyst Intern, Heltar (2023)</dd>
     </dl>
@@ -369,6 +402,7 @@
     <div class="links">
       <a href="mailto:dilshanmatrix13@gmail.com">dilshanmatrix13@gmail.com</a>
       <a href="https://www.linkedin.com/in/dilshanpoonia/" target="_blank" rel="noopener">linkedin.com/in/dilshanpoonia</a>
+      <a href="dilshan-resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
     </div>
   </section>
 </div>
@@ -400,6 +434,7 @@
     <div class="links">
       <a href="mailto:dilshanmatrix13@gmail.com">dilshanmatrix13@gmail.com</a>
       <a href="https://www.linkedin.com/in/dilshanpoonia/" target="_blank" rel="noopener">linkedin.com/in/dilshanpoonia</a>
+      <a href="dilshan-resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
     </div>
   </section>
 </div>
@@ -470,7 +505,7 @@ const CASES = [
     title:"Eight levers, not one: building margin a marketplace could actually sustain",
     abs:"Working with seller and operations teams to find every revenue and cost lever, then moving CM2 from zero to 15%.",
     lede:"A 0→1 marketplace has no baseline, no benchmarks and no agreed definition of profit. It also has no single lever big enough to fix margin — which is why the answer was eight of them, found by sitting with the people who saw the friction every day.",
-    tiles:[["0% → 15%","CM2 in 12 months"],["₹70 Cr","Revenue"],["₹300 Cr","FY26 NMV"]],
+    tiles:[["0% → 15%","CM2 in 12 months"],["₹80 Cr","Revenue"],["₹300 Cr","FY26 NMV"]],
     blocks:[
       {h:"The situation",p:[
         "I joined a dropshipping and self-shipping aggregation platform at the point where it was growing fast and measuring itself loosely. Orders were flowing, but nobody could say with confidence what a shipment earned after freight, returns, claims and payment costs — which meant nobody could say which parts of the business to feed.",
@@ -501,7 +536,7 @@ const CASES = [
         "That is exactly the point. Marketplace margin is not won by one heroic decision; it is assembled. The measurement framework is what made that possible, because it let each lever be sized, sequenced and proved separately instead of arguing about which one mattered most."
       ]},
       {h:"What changed",p:[
-        "CM2 went from <strong>0% to 15% in 12 months</strong> on ₹70 Cr of revenue, against ₹300 Cr of FY26 NMV — and it held, because the levers were structural rather than one-off cuts.",
+        "CM2 went from <strong>0% to 15% in 12 months</strong> on ₹80 Cr of revenue, against ₹300 Cr of FY26 NMV — and it held, because the levers were structural rather than one-off cuts.",
         "The framework also became the language leadership uses for the business. It is what the weekly review, the pricing decisions and the partner negotiations all run on."
       ]}
     ]
