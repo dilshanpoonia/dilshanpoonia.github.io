@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dilshan — Marketplace P&L Work</title>
+<meta name="description" content="Dilshan — marketplace P&amp;L, merchant risk and payments work at CityMall.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Archivo:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --frame:#DDE1D9;
+    --page:#E9EBE6;
+    --surface:#F6F7F4;
+    --ink:#10161F;
+    --muted:#5B6470;
+    --hair:#C9CEC6;
+    --hair-soft:#D9DDD5;
+    --neg:#8C2F39;
+    --pos:#1F5C4A;
+    --display:"Newsreader",Georgia,"Times New Roman",serif;
+    --body:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --frame:#0C1015;
+      --page:#12171D;
+      --surface:#171D25;
+      --ink:#E7EAE6;
+      --muted:#98A2AD;
+      --hair:#2A323B;
+      --hair-soft:#20272F;
+      --neg:#D48279;
+      --pos:#5FB496;
+    }
+  }
+  :root[data-theme="dark"]{
+    --frame:#0C1015;
+    --page:#12171D;
+    --surface:#171D25;
+    --ink:#E7EAE6;
+    --muted:#98A2AD;
+    --hair:#2A323B;
+    --hair-soft:#20272F;
+    --neg:#D48279;
+    --pos:#5FB496;
+  }
+
+  *{box-sizing:border-box}
+  html{color-scheme:light dark}
+  body{
+    margin:0;
+    background:var(--frame);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    padding:14px;
+  }
+  @media (max-width:640px){ body{padding:8px;font-size:16px} }
+
+  .sheet{
+    background:var(--page);
+    border:1px solid var(--hair);
+    min-height:calc(100vh - 28px);
+    padding-inline:clamp(16px,4.5vw,60px);
+    padding-block:clamp(26px,5vw,56px) 0;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .inner{max-width:980px;margin:0 auto}
+
+  h1,h2,h3{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.01em}
+  h1{font-size:clamp(2.1rem,5.4vw,3.5rem);line-height:1.06}
+  h2{font-size:clamp(1.35rem,3vw,1.75rem);line-height:1.2}
+  h3{font-size:1.08rem;line-height:1.3}
+  p{margin:0}
+  a{color:inherit}
+
+  .lbl{
+    font-family:var(--mono);font-size:11px;font-weight:500;
+    letter-spacing:.11em;text-transform:uppercase;color:var(--muted);
+  }
+  .fig{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .pos{color:var(--pos)} .neg{color:var(--neg)}
+
+  /* ---------- masthead ---------- */
+  .masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;
+    padding-bottom:16px;border-bottom:2px solid var(--ink)}
+  .masthead .name{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.1rem);line-height:1;letter-spacing:-.015em}
+  .masthead .role{margin-top:7px}
+  .masthead .right{text-align:right;display:flex;flex-direction:column;gap:5px}
+  @media (max-width:640px){ .masthead .right{text-align:left} }
+
+  nav.rule{display:flex;flex-wrap:wrap;gap:4px 26px;padding-block:10px;border-bottom:1px solid var(--hair)}
+  nav.rule a{text-decoration:none}
+  nav.rule a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+  /* ---------- statement head ---------- */
+  .statement{padding-block:clamp(34px,6vw,60px) 30px;display:flex;flex-direction:column;gap:20px}
+  .statement .lede{font-family:var(--display);font-size:clamp(1.15rem,2.4vw,1.42rem);line-height:1.45;color:var(--ink);max-width:36ch;font-weight:400}
+  .statement .sub{color:var(--muted);max-width:62ch;font-size:16px}
+
+  .figures{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .figures div{padding:16px 16px 16px 0}
+  .figures div + div{border-left:1px solid var(--hair-soft);padding-left:16px}
+  .figures .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(1rem,2.4vw,1.35rem)}
+  .figures .k{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.35;font-family:var(--body)}
+  @media (max-width:720px){
+    .figures{grid-template-columns:1fr 1fr}
+    .figures div:nth-child(3){border-left:0;padding-left:0}
+    .figures div:nth-child(3),.figures div:nth-child(4){border-top:1px solid var(--hair-soft)}
+  }
+
+  /* ---------- section ---------- */
+  section.band{padding-block:clamp(38px,6vw,62px)}
+  .band-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+  .band-head .line{flex:1;height:1px;background:var(--hair)}
+
+  /* ---------- ledger table ---------- */
+  table.ledger{width:100%;border-collapse:collapse}
+  table.ledger th{
+    font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--muted);text-align:left;padding:0 14px 9px 0;border-bottom:1px solid var(--ink);white-space:nowrap;
+  }
+  table.ledger th.r,table.ledger td.r{text-align:right;padding-right:0}
+  table.ledger td{padding:16px 14px 16px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  table.ledger tbody tr{cursor:pointer;transition:background .14s ease}
+  table.ledger tbody tr:hover,table.ledger tbody tr:focus-within{background:var(--surface)}
+  td.no{font-family:var(--display);font-size:1.5rem;color:var(--neg);line-height:1;width:54px;padding-top:15px;font-variant-numeric:tabular-nums}
+  td.eng{width:46%}
+  td.eng a{font-family:var(--display);font-size:1.16rem;line-height:1.3;text-decoration:none;display:inline-block}
+  td.eng a:hover{text-decoration:underline;text-underline-offset:3px}
+  td.eng .abs{font-size:13.5px;color:var(--muted);line-height:1.45;margin-top:5px;max-width:48ch}
+  td.dom,td.scale{font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
+  td.out{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  @media (max-width:820px){
+    table.ledger thead{display:none}
+    table.ledger tbody tr{display:grid;grid-template-columns:44px 1fr auto;gap:2px 10px;padding-block:16px;border-bottom:1px solid var(--hair)}
+    table.ledger td{border:0;padding:0}
+    td.no{grid-row:1/3;font-size:1.25rem;padding-top:4px}
+    td.eng{grid-column:2/4;width:auto}
+    td.dom{grid-column:2/3;margin-top:9px}
+    td.out{grid-column:3/4;margin-top:9px;text-align:right}
+    td.scale{display:none}
+  }
+
+  /* ---------- notes / minor ---------- */
+  .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:26px 34px}
+  .notes .n-no{font-family:var(--mono);font-size:11px;color:var(--neg);letter-spacing:.1em;display:block;margin-bottom:9px}
+  .notes h3{font-family:var(--body);font-size:.99rem;font-weight:600;margin-bottom:6px;letter-spacing:0}
+  .notes p{font-size:14.5px;color:var(--muted);line-height:1.55}
+
+  .minor{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--hair-soft);border:1px solid var(--hair-soft)}
+  .minor article{background:var(--page);padding:18px 18px 20px}
+  .minor h3{font-size:1rem;margin-bottom:7px}
+  .minor p{font-size:13.5px;color:var(--muted);line-height:1.5}
+
+  /* ---------- dl ---------- */
+  dl.kit{display:grid;grid-template-columns:150px 1fr;gap:0 26px;margin:0}
+  dl.kit dt{padding-block:13px;border-top:1px solid var(--hair-soft)}
+  dl.kit dd{margin:0;padding-block:13px;border-top:1px solid var(--hair-soft);font-size:15.5px;color:var(--muted)}
+  dl.kit dt:first-of-type,dl.kit dt:first-of-type + dd{border-top:0}
+  @media (max-width:640px){
+    dl.kit{grid-template-columns:1fr;gap:0}
+    dl.kit dd{border-top:0;padding-top:2px}
+    dl.kit dt:first-of-type + dd{padding-top:2px}
+  }
+
+  /* ---------- case document ---------- */
+  .doc{display:grid;grid-template-columns:168px 1fr;gap:0 40px;padding-block:clamp(28px,5vw,46px) 0}
+  .doc .margin{position:sticky;top:20px;align-self:start;display:flex;flex-direction:column;gap:16px;padding-top:6px}
+  .doc .margin .item .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+  .doc .margin .item .v{font-size:14px;margin-top:3px;line-height:1.4}
+  .doc .margin .item .v.figv{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  @media (max-width:860px){
+    .doc{grid-template-columns:1fr;gap:0}
+    .doc .margin{position:static;flex-direction:row;flex-wrap:wrap;gap:14px 28px;padding-block:18px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin-top:18px}
+  }
+  .doc h1{font-size:clamp(1.75rem,4.4vw,2.75rem);line-height:1.08}
+  .doc .lede{font-family:var(--display);font-size:clamp(1.08rem,2.2vw,1.28rem);line-height:1.5;color:var(--ink);margin-top:16px;max-width:44ch}
+
+  .block{padding-block:26px;border-top:1px solid var(--hair-soft)}
+  .block:first-of-type{border-top:1px solid var(--hair);margin-top:26px}
+  .block > .lbl{display:block;margin-bottom:11px}
+  .block p{color:var(--muted);max-width:64ch;font-size:16px}
+  .block p + p{margin-top:13px}
+  .block strong{color:var(--ink);font-weight:600}
+  .block em{font-style:italic;color:var(--ink)}
+
+  ul.clean{margin:13px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0;max-width:64ch}
+  ul.clean li{padding:11px 0 11px 20px;border-top:1px solid var(--hair-soft);color:var(--muted);font-size:15.5px;line-height:1.5;position:relative}
+  ul.clean li:first-child{border-top:0;padding-top:2px}
+  ul.clean li::before{content:"";position:absolute;left:2px;top:1.25em;width:9px;height:1px;background:var(--neg)}
+  ul.clean li:first-child::before{top:.75em}
+  ul.clean li strong{color:var(--ink);font-weight:600}
+
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);margin-top:24px;border-top:1px solid var(--ink);border-bottom:1px solid var(--hair)}
+  .tiles div{padding:15px 15px 15px 0}
+  .tiles div + div{border-left:1px solid var(--hair-soft);padding-left:15px}
+  .tiles .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(1.05rem,2.6vw,1.35rem)}
+  .tiles .k{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.35}
+  @media (max-width:720px){
+    .tiles{grid-template-columns:1fr}
+    .tiles div + div{border-left:0;padding-left:0;border-top:1px solid var(--hair-soft)}
+  }
+
+  /* flow + svg */
+  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(146px,1fr));gap:1px;margin-top:18px}
+  .flow .step{background:var(--page);padding:14px;outline:1px solid var(--hair-soft)}
+  .flow .step .s{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--neg)}
+  .flow .step .t{font-size:14.5px;margin-top:7px;font-weight:600;line-height:1.3}
+  .flow .step .d{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+
+  figure{margin:18px 0 0;max-width:100%}
+  figure svg{width:100%;height:auto;max-width:600px;display:block}
+  figcaption{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:11px;line-height:1.5}
+  .svg-box{fill:var(--surface);stroke:var(--hair);stroke-width:1}
+  .svg-box-a{fill:var(--surface);stroke:var(--ink);stroke-width:1}
+  .svg-t{fill:var(--ink);font-family:"Archivo",sans-serif;font-size:12.5px}
+  .svg-t-s{fill:var(--muted);font-family:"Geist Mono",monospace;font-size:10px}
+  .svg-line{stroke:var(--hair);stroke-width:1;fill:none}
+
+  .pager{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--ink);padding-block:20px;margin-top:30px}
+  .pager button{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--muted);text-align:left;font-family:var(--mono);font-size:12.5px}
+  .pager button:hover{color:var(--ink)}
+  .pager .k{display:block;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;margin-bottom:5px;color:var(--muted)}
+
+  .back{background:none;border:0;padding:0;cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+  .back:hover{color:var(--ink)}
+
+  /* ---------- colophon ---------- */
+  .colophon{border-top:2px solid var(--ink);margin-top:clamp(34px,6vw,56px);padding-block:26px 34px;
+    display:flex;justify-content:space-between;gap:24px 40px;flex-wrap:wrap;align-items:flex-start}
+  .colophon .links{display:flex;flex-direction:column;gap:7px;font-family:var(--mono);font-size:13.5px}
+  .colophon a{text-decoration:none;border-bottom:1px solid var(--hair)}
+  .colophon a:hover{border-color:var(--ink)}
+  .colophon .say{max-width:38ch}
+  .colophon .say p{color:var(--muted);font-size:15px;margin-top:9px}
+
+  :focus-visible{outline:2px solid var(--neg);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="sheet">
+<div class="inner">
+
+  <header class="masthead">
+    <div>
+      <div class="name">Dilshan</div>
+      <div class="role lbl">Data Analyst · Marketplace P&amp;L, risk &amp; payments</div>
+    </div>
+    <div class="right lbl">
+      <span>CityMall · Gurugram</span>
+      <span>B.Tech + M.Tech, IIT Kharagpur</span>
+      <span>Sept 2024 — present</span>
+    </div>
+  </header>
+
+  <nav class="rule lbl">
+    <a href="#method">Method</a>
+    <a href="#home" data-nav="home">Work</a>
+    <a href="#record">Record</a>
+    <a href="mailto:dilshanmatrix13@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/dilshanpoonia/" target="_blank" rel="noopener">LinkedIn</a>
+  </nav>
+
+<main>
+<!-- ================= HOME ================= -->
+<div id="view-home">
+
+  <section class="statement">
+    <span class="lbl">Statement of work</span>
+    <h1>I find where the money leaks, and I get it fixed.</h1>
+    <p class="lede">Two years on the numbers behind a dropshipping and self-shipping marketplace — from a blank slate to ₹300 Cr of annualised NMV.</p>
+    <p class="sub">I own margin, merchant risk and pricing decisions rather than dashboards about them: the contribution-margin framework the business runs on, the model that stops orders which were never going to deliver, and the payout engine that replaced settlement by hand.</p>
+  </section>
+
+  <div class="figures">
+    <div><div class="v pos">0% → 15%</div><div class="k">Contribution margin (CM2), 12 months</div></div>
+    <div><div class="v">₹300 Cr</div><div class="k">FY26 NMV on the platform</div></div>
+    <div><div class="v">100+</div><div class="k">Merchants and D2C brands</div></div>
+    <div><div class="v">700K+</div><div class="k">Orders analysed monthly</div></div>
+  </div>
+
+  <section class="band" id="method">
+    <div class="band-head"><span class="lbl">Method</span><span class="line"></span></div>
+    <div class="notes">
+      <div>
+        <span class="n-no">01</span>
+        <h3>Start at the P&amp;L, not the dashboard</h3>
+        <p>Every question gets traced back to a line someone owns. If an analysis can't move a number on that line, it isn't worth running.</p>
+      </div>
+      <div>
+        <span class="n-no">02</span>
+        <h3>Separate the driver from the noise</h3>
+        <p>Margin problems arrive with three plausible causes wearing each other's clothes. The work is isolating which one actually moved, then proving it.</p>
+      </div>
+      <div>
+        <span class="n-no">03</span>
+        <h3>Numbers tie out, first time</h3>
+        <p>An analysis that needs a correction the next morning costs more credibility than it ever bought. I reconcile before I present.</p>
+      </div>
+      <div>
+        <span class="n-no">04</span>
+        <h3>Automate anything recurring</h3>
+        <p>If I've pulled it twice by hand, it becomes a pipeline. The time saved goes back into questions nobody has asked yet.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="band-head"><span class="lbl">Ledger of work</span><span class="line"></span></div>
+    <table class="ledger">
+      <thead>
+        <tr><th>No.</th><th>Engagement</th><th>Domain</th><th>Scale</th><th class="r">Outcome</th></tr>
+      </thead>
+      <tbody id="ledger"></tbody>
+    </table>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="band-head"><span class="lbl">Also on the desk</span><span class="line"></span></div>
+    <div class="minor">
+      <article>
+        <h3>Unit-economics pricing</h3>
+        <p>SKU-level pricing, weight calibration and logistics cost attribution across 1,000+ products, tested through controlled A/B rollouts. Cost leakage down 12%, delivery success up 20%.</p>
+      </article>
+      <article>
+        <h3>The weekly leadership read</h3>
+        <p>A standing briefing to the C-suite that turned the week's numbers into decisions. Three pricing and risk policy changes came out of it, worth 12% lower cost and 19% better margin.</p>
+      </article>
+      <article>
+        <h3>Reporting that runs itself</h3>
+        <p>Recurring reporting and live operational monitoring automated in SQL and Python across ClickHouse, Postgres and Athena. Manual trackers retired; cross-functional visibility up 30%.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="band" id="record" style="padding-top:0">
+    <div class="band-head"><span class="lbl">Record</span><span class="line"></span></div>
+    <dl class="kit">
+      <dt class="lbl">Querying</dt>
+      <dd>SQL — window functions, CTEs, query optimisation. Python for analysis, modelling and automation.</dd>
+      <dt class="lbl">Platforms</dt>
+      <dd>Google BigQuery, ClickHouse, PostgreSQL, MySQL, Amazon Redshift / Athena / S3</dd>
+      <dt class="lbl">Analysis &amp; BI</dt>
+      <dd>Tableau, Power BI, Looker, Excel and Google Sheets, pandas, NumPy, Statsmodels, scikit-learn</dd>
+      <dt class="lbl">Methods</dt>
+      <dd>A/B testing and experiment design, hypothesis testing, classification models, cohort and retention analysis, P&amp;L and unit-economics modelling, root-cause analysis</dd>
+      <dt class="lbl">Domain</dt>
+      <dd>Marketplace and e-commerce economics, 3PL logistics, merchant risk, payments and settlements</dd>
+      <dt class="lbl">Education</dt>
+      <dd>Dual Degree (B.Tech + M.Tech), IIT Kharagpur, 2024</dd>
+      <dt class="lbl">Elsewhere</dt>
+      <dd>Department Representative, Career Development Centre, IIT Kharagpur (2021–22) · Selected for Amazon ML Summer School, 2022 · Data Analyst Intern, Heltar (2023)</dd>
+    </dl>
+  </section>
+
+  <section class="colophon">
+    <div class="say">
+      <h2>Open to business, analytics and strategy roles</h2>
+      <p>Happiest where a P&amp;L, an operating team and a messy dataset meet. Based in Gurugram.</p>
+    </div>
+    <div class="links">
+      <a href="mailto:dilshanmatrix13@gmail.com">dilshanmatrix13@gmail.com</a>
+      <a href="https://www.linkedin.com/in/dilshanpoonia/" target="_blank" rel="noopener">linkedin.com/in/dilshanpoonia</a>
+    </div>
+  </section>
+</div>
+
+<!-- ================= CASE ================= -->
+<div id="view-case" hidden>
+  <article class="doc">
+    <aside class="margin">
+      <button class="back" type="button" data-nav="home">← Ledger</button>
+      <div class="item"><div class="k">No.</div><div class="v figv" id="m-no"></div></div>
+      <div class="item"><div class="k">Domain</div><div class="v" id="m-dom"></div></div>
+      <div class="item"><div class="k">Scale</div><div class="v figv" id="m-scale"></div></div>
+      <div class="item"><div class="k">Outcome</div><div class="v figv" id="m-out"></div></div>
+      <div class="item"><div class="k">Built with</div><div class="v" id="m-tools"></div></div>
+    </aside>
+    <div>
+      <h1 id="c-title"></h1>
+      <p class="lede" id="c-lede"></p>
+      <div class="tiles" id="c-tiles"></div>
+      <div id="c-blocks"></div>
+      <div class="pager" id="c-pager"></div>
+    </div>
+  </article>
+  <section class="colophon">
+    <div class="say">
+      <h2>Want the detail behind this?</h2>
+      <p>Happy to walk through the analysis, the dead ends and what I'd do differently.</p>
+    </div>
+    <div class="links">
+      <a href="mailto:dilshanmatrix13@gmail.com">dilshanmatrix13@gmail.com</a>
+      <a href="https://www.linkedin.com/in/dilshanpoonia/" target="_blank" rel="noopener">linkedin.com/in/dilshanpoonia</a>
+    </div>
+  </section>
+</div>
+</main>
+</div>
+</div>
+
+<script>
+const DRIVER_TREE = `
+<figure>
+<svg viewBox="0 0 600 206" role="img" aria-label="Driver tree decomposing a CM2 anomaly into pricing, catalog quality and partner SLA drivers">
+  <rect class="svg-box-a" x="1" y="76" width="146" height="54"/>
+  <text class="svg-t" x="15" y="98">CM2 anomaly</text>
+  <text class="svg-t-s" x="15" y="116">week on week</text>
+  <path class="svg-line" d="M147 103 H190 V32 H228"/>
+  <path class="svg-line" d="M190 103 H228"/>
+  <path class="svg-line" d="M190 103 V174 H228"/>
+  <rect class="svg-box" x="228" y="8" width="178" height="48"/>
+  <text class="svg-t" x="242" y="28">Pricing &amp; rate cards</text>
+  <text class="svg-t-s" x="242" y="45">price vs. freight slab</text>
+  <rect class="svg-box" x="228" y="79" width="178" height="48"/>
+  <text class="svg-t" x="242" y="99">Catalog quality</text>
+  <text class="svg-t-s" x="242" y="116">weight / dimension errors</text>
+  <rect class="svg-box" x="228" y="150" width="178" height="48"/>
+  <text class="svg-t" x="242" y="170">Partner SLAs</text>
+  <text class="svg-t-s" x="242" y="187">delivery, RTO, claims</text>
+  <path class="svg-line" d="M406 32 H444 V103 H482"/>
+  <path class="svg-line" d="M406 103 H482"/>
+  <path class="svg-line" d="M406 174 H444 V103"/>
+  <rect class="svg-box-a" x="482" y="76" width="117" height="54"/>
+  <text class="svg-t" x="496" y="98">Owner + fix</text>
+  <text class="svg-t-s" x="496" y="116">named, dated</text>
+</svg>
+<figcaption>Every margin anomaly is decomposed the same way, so the weekly review argues about the fix rather than the cause.</figcaption>
+</figure>`;
+
+const RISK_FLOW = `
+<div class="flow">
+  <div class="step"><div class="s">Order placed</div><div class="t">Before anything ships</div><div class="d">The only moment the loss is still avoidable — nothing packed, shipped or spent.</div></div>
+  <div class="step"><div class="s">Signals</div><div class="t">6+ factors scored</div><div class="d">Customer and address history, payment mode, order value, category, lane behaviour.</div></div>
+  <div class="step"><div class="s">Band</div><div class="t">Low · Moderate · High</div><div class="d">A model trained on the full order history returns a band, not a probability.</div></div>
+  <div class="step"><div class="s">Decision</div><div class="t">Seller chooses to dispatch</div><div class="d">The person carrying the loss makes the call, with the evidence in front of them.</div></div>
+  <div class="step"><div class="s">Optional</div><div class="t">Auto "Not To Be Fulfilled"</div><div class="d">Sellers who opt in have a backend job apply their standing rule.</div></div>
+</div>`;
+
+const PAYOUT_FLOW = `
+<div class="flow">
+  <div class="step"><div class="s">Trigger</div><div class="t">Order marked delivered</div><div class="d">Delivery is the event that earns the money, so it is the event that books it.</div></div>
+  <div class="step"><div class="s">Accrual</div><div class="t">Booked against delivery date</div><div class="d">The backend computes what the seller is owed and stores it on the date it was earned.</div></div>
+  <div class="step"><div class="s">Live view</div><div class="t">Outstanding, in real time</div><div class="d">Sellers and the team see one number instead of waiting for a reconciliation.</div></div>
+  <div class="step"><div class="s">Release</div><div class="t">Terms move it to the wallet</div><div class="d">The contractual cycle decides when an accrual becomes withdrawable.</div></div>
+  <div class="step"><div class="s">Withdrawal</div><div class="t">Seller pulls when they need it</div><div class="d">With the GST invoice generated automatically against the payment.</div></div>
+</div>`;
+
+const CASH_LOOP = `
+<div class="flow">
+  <div class="step"><div class="s">01 · In</div><div class="t">Buyer pays on delivery</div><div class="d">Cash leaves the buyer's hands and sits with the logistics partner, not with us.</div></div>
+  <div class="step"><div class="s">02 · Due in</div><div class="t">COD owed by each 3PL</div><div class="d">What every partner has collected and still owes, by remittance cycle.</div></div>
+  <div class="step"><div class="s">03 · Due out</div><div class="t">Seller payouts</div><div class="d">Accrued against delivery, released on terms — a committed outflow.</div></div>
+  <div class="step"><div class="s">04 · Due out</div><div class="t">3PL invoices</div><div class="d">Freight, returns and weight disputes, checked before they are paid.</div></div>
+  <div class="step"><div class="s">05 · Net</div><div class="t">Cash position</div><div class="d">What is actually free — and therefore how hard the funnel can be pushed.</div></div>
+</div>`;
+
+const CASES = [
+  {
+    id:"cm2", no:"01", dom:"Growth · P&L", scale:"₹300 Cr NMV", out:"CM2 0% → 15%", outClass:"pos",
+    tools:"SQL · Python · seller & ops teams",
+    title:"Eight levers, not one: building margin a marketplace could actually sustain",
+    abs:"Working with seller and operations teams to find every revenue and cost lever, then moving CM2 from zero to 15%.",
+    lede:"A 0→1 marketplace has no baseline, no benchmarks and no agreed definition of profit. It also has no single lever big enough to fix margin — which is why the answer was eight of them, found by sitting with the people who saw the friction every day.",
+    tiles:[["0% → 15%","CM2 in 12 months"],["₹70 Cr","Revenue"],["₹300 Cr","FY26 NMV"]],
+    blocks:[
+      {h:"The situation",p:[
+        "I joined a dropshipping and self-shipping aggregation platform at the point where it was growing fast and measuring itself loosely. Orders were flowing, but nobody could say with confidence what a shipment earned after freight, returns, claims and payment costs — which meant nobody could say which parts of the business to feed.",
+        "Growth on negative contribution is a countdown, not a business. The mandate was to make the economics sustainable without slowing the growth that justified the platform in the first place."
+      ]},
+      {h:"Where the levers came from",p:[
+        "I built the contribution-margin framework first — what counts as revenue, which costs attach to an order, and how a shipment's economics are tracked from placement through delivery, return and settlement. Consistent at order, SKU and merchant level, so the number meant the same thing to everyone.",
+        "Then I went looking for levers with the two teams who could see them: <strong>the seller team</strong>, who knew what merchants would pay for and what they complained about, and <strong>operations</strong>, who knew exactly where cost escaped on the way to the door. Almost every lever below started as something one of them already knew and nobody had priced."
+      ]},
+      {h:"Revenue levers",p:[
+        "Half the answer was that the platform was giving away services it could sell, and absorbing costs it had no reason to carry."
+      ],list:[
+        "<strong>WhatsApp messaging services:</strong> packaged buyer communication into a paid service for sellers instead of an unbilled platform expense.",
+        "<strong>Weight-dispute pass-through:</strong> when the 3PL charged us for a weight discrepancy, the charge went to the seller whose declaration caused it. The platform stopped absorbing other people's data errors — and, more usefully, sellers suddenly had a reason to declare weights correctly.",
+        "<strong>NDR calling for sellers:</strong> turned undelivered-order follow-up into a service sellers could buy, which also recovered orders that would otherwise have returned.",
+        "<strong>Rate revisions:</strong> repriced seller clients to what the service was actually worth, in sequence and with justification, rather than holding launch pricing indefinitely."
+      ]},
+      {h:"Cost levers",p:[
+        "The other half was making each shipment cheaper without touching what the buyer received."
+      ],list:[
+        "<strong>3PL selection by zone, product and order value:</strong> no partner is cheapest everywhere. Routing each shipment to the right partner for its lane and profile turned procurement into a per-order decision.",
+        "<strong>Packaging management:</strong> reduced material cost and, more importantly, kept parcels inside the weight slab they were priced for.",
+        "<strong>SKU-level packing:</strong> worked through SKUs individually so that pack format and declared weight matched the slab the shipment would be billed at.",
+        "<strong>COGS negotiation with merchants:</strong> renegotiated SKU costs where volume had earned it, which moved margin without any price change reaching the buyer."
+      ]},
+      {h:"Why it had to be eight things",p:[
+        "Every one of these levers is small. Individually, none of them would have survived a slide in a leadership review — a percentage point here, a packaging change there.",
+        "That is exactly the point. Marketplace margin is not won by one heroic decision; it is assembled. The measurement framework is what made that possible, because it let each lever be sized, sequenced and proved separately instead of arguing about which one mattered most."
+      ]},
+      {h:"What changed",p:[
+        "CM2 went from <strong>0% to 15% in 12 months</strong> on ₹70 Cr of revenue, against ₹300 Cr of FY26 NMV — and it held, because the levers were structural rather than one-off cuts.",
+        "The framework also became the language leadership uses for the business. It is what the weekly review, the pricing decisions and the partner negotiations all run on."
+      ]}
+    ]
+  },
+  {
+    id:"payouts", no:"02", dom:"Payments · 0→1", scale:"₹7 Cr+ / mo", out:"+2.7% revenue", outClass:"pos",
+    tools:"SQL · Python · business rules",
+    title:"Retiring the settlement spreadsheet: a payout engine that runs itself",
+    abs:"Delivery-triggered accrual, a seller wallet and one-click payment cycles — manual settlement retired.",
+    lede:"Sellers were being paid by hand. Someone calculated what was owed, someone else released it, and every week the platform absorbed the errors and the phone calls. I designed and built the system that replaced all of it.",
+    tiles:[["₹7 Cr+","Monthly transaction flow"],["+2.7%","Incremental revenue"],["60%","Faster processing"]],
+    blocks:[
+      {h:"The situation",p:[
+        "Paying 100+ merchants is deceptively hard. What a seller is owed depends on which of their orders actually delivered, what the terms say, and what the platform is holding back — and all of it changes daily.",
+        "Doing that by hand means three problems compounding. The numbers take time, so sellers wait. The numbers are contestable, so the team spends its week explaining them. And when the answer is wrong, it is wrong in a place nobody can audit — which is a serious problem when real money moves on it."
+      ]},
+      {h:"The idea",p:[
+        "The insight was picking the right event to build on. A seller earns their money the moment an order is <strong>delivered</strong>, not the moment finance gets around to computing it — so delivery became the trigger, and the delivery date became the date the money is booked against.",
+        "That one decision separates what is <strong>earned</strong> from what is <strong>payable</strong>, and everything else in the product follows from it."
+      ],raw:PAYOUT_FLOW},
+      {h:"What I built",p:[
+        "A payout and financing product for 100+ merchants and D2C brands, built with SQL, Python and a lot of argument about what the business rules should actually be."
+      ],list:[
+        "<strong>Delivery-triggered accrual:</strong> when an order delivers, the backend computes the payable amount and stores it against the delivery date — an auditable record of when each rupee was earned.",
+        "<strong>Live outstanding:</strong> total outstanding shows in real time instead of arriving with a weekly reconciliation.",
+        "<strong>Terms-driven release:</strong> the contractual cycle decides when an accrual moves into the seller's wallet, where they withdraw on their own schedule rather than waiting for a payout run.",
+        "<strong>One-click cycle changes:</strong> moving a seller to a different payment cycle is a configuration change, not a fortnight of manual recalculation.",
+        "<strong>Automatic GST invoicing:</strong> the tax document generates against the payment itself, so the paperwork can never drift from the money."
+      ]},
+      {h:"Why it is built this way",p:[
+        "Storing against the delivery date rather than the release date is the detail that makes the rest safe. The ledger records history; the terms decide the timing. Change a seller's cycle and nothing that already happened gets rewritten — which is what makes a one-click change possible in the first place.",
+        "Separating the wallet from the release does the same job for the seller. The platform controls when money becomes available; the seller controls when they take it. Neither side has to call the other to find out where things stand."
+      ]},
+      {h:"What changed",p:[
+        "Settlement went from a manual calculation-and-release cycle to a system that needs maintenance rather than operation. The support team stopped reconstructing arithmetic and started pointing at a record, because every payment now has a clean one.",
+        "The product handles <strong>₹7 Cr+ in monthly transaction flow</strong>, delivered <strong>+2.7% incremental revenue</strong> and cut processing time <strong>60%</strong>. Sellers got liquidity and a number they can trust; the platform got a margin line, cleaner books and a stickier merchant base."
+      ]}
+    ]
+  },
+  {
+    id:"finance", no:"03", dom:"Finance · Treasury", scale:"₹300 Cr NMV", out:"Cash position", outClass:"",
+    tools:"SQL · Python · Sheets",
+    title:"Where the cash actually is: reconciliation as the instrument that paces growth",
+    abs:"COD due from logistics partners, payouts due to sellers, bills due to 3PLs — reconciled into one cash position the business could plan against.",
+    lede:"On a ₹300 Cr platform the money is almost never where the P&L says it is. It is sitting with a logistics partner who collected it on Tuesday, owed to a seller whose order delivered on Wednesday, and promised to a 3PL whose invoice lands on Friday. Knowing the real position is what decides how hard you can push growth.",
+    blocks:[
+      {h:"The situation",p:[
+        "Profit and cash are different questions, and only one of them stops a business. A marketplace running cash on delivery collects from buyers through its logistics partners, pays its sellers on their own cycles, and settles its 3PL bills on theirs — three counterparties, three calendars, and money in motion the entire time.",
+        "Every party had a number. None of the numbers agreed. Without a reconciled position, growth decisions were being taken on a revenue line that said nothing about whether the cash existed to fund them."
+      ]},
+      {h:"The loop the money actually travels",p:[
+        "Before anything could be fixed, the movement had to be modelled as what it is: a loop with a lag at every step."
+      ],raw:CASH_LOOP},
+      {h:"Reconciliation, done as an instrument",p:[
+        "I built the finance analytics layer that holds every leg of that loop to account — not as month-end housekeeping, but as a running instrument the business reads.",
+        "The discipline is unglamorous and it is where the money is found: what a partner <em>should</em> have remitted against what landed, invoice lines checked before they are paid, and every payment transaction matched end to end."
+      ],list:[
+        "<strong>Expected against actual COD:</strong> what each logistics partner collected, what they owe, and what has actually arrived — short remittance surfaced while it can still be recovered.",
+        "<strong>Payment transactions:</strong> every movement reconciled to its order, so the ledger and the bank tell the same story.",
+        "<strong>3PL invoices:</strong> freight, return and weight-dispute lines verified against our own record before payment, rather than paid and regretted.",
+        "<strong>Seller payouts:</strong> accruals and releases tied back to delivery, so committed outflow is known before it leaves."
+      ]},
+      {h:"Schemes, and the discipline of chasing them",p:[
+        "Payout schemes and seller incentive schemes are the fastest lever a marketplace has and the easiest to lose money on. Faster settlement and volume incentives both work — they are also both cash commitments made in advance of a result.",
+        "So each scheme was run as a number to be chased rather than a policy to be announced: what it costs in cash and timing, what volume it has to return to be worth it, and a hard read on whether it delivered. Going hard on the numbers is what separates a scheme that buys growth from one that buys goodwill."
+      ]},
+      {h:"The decision this exists to serve",p:[
+        "All of it converges on one question the growth side kept asking: <strong>how much can we load into the funnel right now?</strong>",
+        "With the loop reconciled, that stopped being a guess. A known cash position, with known inflows due and known commitments out, is what lets a business spend confidently in a good week and hold in a tight one — and it is the difference between growth that compounds and growth that stalls a payout cycle."
+      ]},
+      {h:"What it amounts to",p:[
+        "Marketplace growth is a treasury question as much as a demand question. Reconciliation earns its keep not when it closes the books, but when it tells you — on a Monday, with confidence — exactly how aggressive you are allowed to be this week."
+      ]}
+    ]
+  },
+  {
+    id:"risk", no:"04", dom:"Risk · RTO model", scale:"700K+ orders / mo", out:"−25% risk loss", outClass:"pos",
+    tools:"SQL · Python · ML",
+    title:"Predicting which orders will come back, before anyone ships them",
+    abs:"A model that scores every order at placement, so sellers never ship an order that was always coming back.",
+    lede:"An order that returns undelivered is the worst outcome in e-commerce: the seller pays freight both ways, has already spent the marketing to win the customer, and gets nothing back but their own stock, weeks later. I built the model that flags those orders while they can still be stopped.",
+    tiles:[["20K+","High-risk orders flagged monthly"],["25%","Reduction in risk losses"],["700K+","Orders scored monthly"]],
+    blocks:[
+      {h:"The situation",p:[
+        "Every seller on the platform knew RTO was expensive. Almost none of them could act on it, because the loss only becomes visible weeks after the decision that caused it.",
+        "The arithmetic is brutal. A returned order costs the forward logistics fee, the return leg, the marketing spend that won the customer in the first place, and the working capital locked in goods that come back handled and delayed. Revenue on that order is zero. The seller pays for the privilege of having tried."
+      ]},
+      {h:"The reframe",p:[
+        "Everyone was treating RTO as a post-mortem: measure it, report it, complain about it. But the only moment that matters is <strong>before dispatch</strong> — the one point where nothing has been spent and the outcome is still a choice.",
+        "The question changed from <em>how much RTO did we have</em> to <em>which of today's orders should not be shipped</em>. That is a prediction problem, and the platform was sitting on exactly the data needed to solve it: years of orders that either delivered or did not."
+      ]},
+      {h:"What I built",p:[
+        "A risk model built in SQL and Python over the full historical order base, learning the patterns that separate orders that deliver from orders that come back. It scores every new order at placement against six-plus factors and returns a risk band.",
+        "The signals cover the order, the customer and the lane: buyer and address history, payment mode, order value, product category, and how that delivery route has behaved historically."
+      ],raw:RISK_FLOW},
+      {h:"Why bands, not probabilities",p:[
+        "The model could return a number to four decimal places. It would have been useless. Sellers are not sitting with a risk appetite and a threshold — they are packing orders and need to know what to do with this one.",
+        "So the output is <strong>low, moderate or high</strong>, because that maps onto the three actions a seller actually takes: ship it, look at it, or don't ship it. The modelling difficulty stays on my side of the screen; the seller gets a decision."
+      ]},
+      {h:"The call I had to get right",p:[
+        "A model like this fails in two directions, and they are not symmetric. Miss a bad order and the seller eats one RTO. Wrongly kill a good one and the seller loses a real sale, a real customer, and their trust in the system — permanently.",
+        "That asymmetry set the thresholds. The model flags <strong>20,000+ high-risk orders a month at 21% precision</strong>: calibrated so that what it surfaces is worth a seller's attention while the volume stays inside what they can review. It never cancels an order on its own authority — the seller decides, every time."
+      ]},
+      {h:"Automating the seller's own rule",p:[
+        "Sellers who had made the same call enough times wanted it to stop being a call. So the product takes their standing instruction and applies it: a backend job marks matching orders <strong>Not To Be Fulfilled</strong>, without the seller reviewing each one.",
+        "The distinction matters — the system automates the seller's decision, it does not make one for them. Opting in is theirs, and so is the rule."
+      ]},
+      {h:"What changed",p:[
+        "The decision moved upstream, from a monthly RTO report to the moment of dispatch. Sellers stopped paying to ship orders that were never going to arrive, and risk losses fell <strong>25%</strong>.",
+        "The wider effect was on trust. A seller who can see why an order is risky, and who keeps the final say, starts treating the platform as something that protects their money rather than something that spends it."
+      ]}
+    ]
+  },
+  {
+    id:"marketing", no:"05", dom:"Marketing · Demand", scale:"Two funnels", out:"Demand engine", outClass:"",
+    tools:"Meta Ads · SEO · agency",
+    title:"Two funnels, one P&L: building demand for a logistics aggregator",
+    abs:"A B2B funnel bringing D2C founders onto the platform, and a separate consumer funnel running orders for our own accounts.",
+    lede:"Two separate demand jobs sat under one function: bring D2C founders onto the platform, and generate orders for our own selling accounts. Different audiences, different funnels, different P&Ls — and the constraint on both was never volume, it was whether the economics underneath still worked.",
+    blocks:[
+      {h:"The situation",p:[
+        "The aggregator had a service D2C brands needed and no engine bringing them in. Worse, acquiring a brand was only half the job: a seller who signs and then does not ship is not revenue, they are a cost of onboarding.",
+        "Alongside that sat a second, entirely separate business — <strong>our own selling accounts</strong>, where the company is the merchant rather than the service provider. Those accounts needed consumer demand of their own.",
+        "So the function carried two funnels that share nothing but a marketing budget: a <strong>B2B funnel</strong> selling operations services to founders, and a <strong>consumer funnel</strong> generating orders for accounts we owned."
+      ]},
+      {h:"Funnel one: winning the founder",p:[
+        "I ran lead generation aimed squarely at D2C founders and operators, positioning the platform on the operational pain they feel daily rather than on rate cards.",
+        "What governs this funnel is lead <em>quality</em>, not lead volume. A form that fills easily with people who will never ship is the most expensive thing a B2B funnel can produce, and the discipline is refusing to celebrate it."
+      ]},
+      {h:"The handover nobody owns",p:[
+        "Most acquisition dies in the gap between signing and shipping. I took onboarding and the founder experience end to end — so the promise made in an ad and the reality of the first week were the same thing.",
+        "It is also the cheapest growth available. A founder who ships successfully in week one becomes volume; one who stalls becomes a refund conversation and a bad reference in a small, talkative market."
+      ]},
+      {h:"Funnel two: our own accounts",p:[
+        "This funnel had nothing to do with founders. It ran ads on trending products to generate orders for <strong>our own accounts</strong> — a consumer audience, a different creative language, and a P&L that lives or dies on what each order contributes.",
+        "Here the constraint is unit economics, not reach. Demand bought above what an order contributes is a loss wearing the costume of growth — so the target was never <em>more orders</em>, it was <strong>orders the account stays profitable on</strong>. Product selection, creative and channel all got read against account-level margin rather than against a marketing dashboard."
+      ]},
+      {h:"Running the agency as a channel",p:[
+        "I led the marketing agency partnership covering SEO, digital and content — blog posts, organic search, paid support.",
+        "Agencies work when someone on the client side sets the question and holds the number. I treated the agency as a channel with a target rather than a vendor with a retainer: what it was accountable for, how it was measured, and what would make us stop."
+      ]},
+      {h:"What it amounts to",p:[
+        "Neither funnel is brand work — each is the top of a P&L I already owned the bottom of. Knowing what a seller is worth after freight, RTO and settlement, and what an order leaves behind once it has shipped, is what tells you which demand is worth buying at all. That is the part most marketing teams cannot see."
+      ]}
+    ]
+  },
+  {
+    id:"margin", no:"06", dom:"Margin · RCA", scale:"7+ partners", out:"−25% leakage", outClass:"pos",
+    tools:"SQL · Python · Sheets",
+    title:"Finding 25% of operating leakage hiding between three plausible causes",
+    abs:"Weekly root-cause analysis across seven logistics partners, separating pricing, catalog and SLA drivers.",
+    lede:"Margin was bleeding across seven logistics partners and every function had a theory. The work was proving which theory was right, week after week, until the leak closed.",
+    tiles:[["25%","Operational leakage removed"],["7+","Logistics partners in scope"],["Weekly","Cadence of the review"]],
+    blocks:[
+      {h:"The situation",p:[
+        "A marketplace shipping hundreds of thousands of orders a month loses margin in a dozen small ways at once. Ours showed up as a CM2 line moving the wrong way without an obvious reason — and three teams each confident it was someone else's problem.",
+        "Pricing believed the rate cards were fine. Catalog believed the product data was clean. Operations believed the logistics partners were performing. All three could not be right."
+      ]},
+      {h:"What I did",p:[
+        "I built a standing weekly root-cause analysis that decomposed every CM2, RTO and margin anomaly down to a single owner. The point was to make the drivers separable: freight charged against freight billed, declared weight against charged weight, promised SLA against actual performance — by partner and by SKU band."
+      ],raw:DRIVER_TREE},
+      {h:"What it found",p:[
+        "The leakage was never one thing. Mispriced freight slabs, wrong catalog weights and underperforming partner lanes each carried a share, and the mix changed month to month — which is exactly why single-cause explanations kept failing."
+      ],list:[
+        "<strong>Pricing:</strong> SKUs whose freight slab no longer matched their real shipping cost.",
+        "<strong>Catalog:</strong> weight and dimension errors that turned every shipment of a product into a loss.",
+        "<strong>Partners:</strong> lanes where the SLA on paper and the delivery record had quietly diverged."
+      ]},
+      {h:"What changed",p:[
+        "Each driver got a named owner and a dated corrective plan instead of a mention in a deck. Rate cards were repriced, catalog errors corrected at source, and partner allocation shifted away from the weak lanes.",
+        "Operational leakage came down <strong>25%</strong>, and the weekly review stopped being an argument about causes."
+      ]}
+    ]
+  }
+
+];
+
+/* ---------- ledger ---------- */
+const tbody=document.getElementById("ledger");
+CASES.forEach(c=>{
+  const tr=document.createElement("tr");
+  tr.dataset.case=c.id;
+  tr.innerHTML=`<td class="no">${c.no}</td>
+    <td class="eng"><a href="#case/${c.id}">${c.title}</a><div class="abs">${c.abs}</div></td>
+    <td class="dom">${c.dom}</td>
+    <td class="scale">${c.scale}</td>
+    <td class="out r ${c.outClass}">${c.out}</td>`;
+  tbody.appendChild(tr);
+});
+
+/* ---------- routing ---------- */
+const vHome=document.getElementById("view-home");
+const vCase=document.getElementById("view-case");
+
+function renderCase(id){
+  const i=CASES.findIndex(c=>c.id===id);
+  if(i<0){ showHome(); return; }
+  const c=CASES[i];
+  document.getElementById("m-no").textContent=c.no;
+  document.getElementById("m-dom").textContent=c.dom;
+  document.getElementById("m-scale").textContent=c.scale;
+  const out=document.getElementById("m-out");
+  out.textContent=c.out; out.className="v figv "+c.outClass;
+  document.getElementById("m-tools").textContent=c.tools;
+  document.getElementById("c-title").textContent=c.title;
+  document.getElementById("c-lede").textContent=c.lede;
+  const tiles=document.getElementById("c-tiles");
+  tiles.innerHTML=(c.tiles||[])
+    .map(t=>`<div><div class="v">${t[0]}</div><div class="k">${t[1]}</div></div>`).join("");
+  tiles.hidden=!(c.tiles && c.tiles.length);
+  document.getElementById("c-blocks").innerHTML=c.blocks.map(b=>{
+    const ps=(b.p||[]).map(p=>`<p>${p}</p>`).join("");
+    const li=b.list?`<ul class="clean">${b.list.map(x=>`<li>${x}</li>`).join("")}</ul>`:"";
+    return `<section class="block"><span class="lbl">${b.h}</span>${ps}${li}${b.raw||""}</section>`;
+  }).join("");
+  const prev=CASES[(i-1+CASES.length)%CASES.length], next=CASES[(i+1)%CASES.length];
+  document.getElementById("c-pager").innerHTML=
+    `<button type="button" data-case="${prev.id}"><span class="k">Previous</span>${prev.no} · ${prev.dom}</button>
+     <button type="button" data-case="${next.id}" style="text-align:right"><span class="k">Next</span>${next.no} · ${next.dom}</button>`;
+  vHome.hidden=true; vCase.hidden=false;
+  document.title=c.dom.split(" · ")[0]+" — Dilshan";
+}
+function showHome(){
+  vCase.hidden=true; vHome.hidden=false;
+  document.title="Dilshan — Marketplace P&L Work";
+}
+function route(){
+  const h=(location.hash||"#home").replace("#","");
+  if(h.startsWith("case/")) renderCase(h.slice(5));
+  else{
+    showHome();
+    if(h==="method"||h==="record") document.getElementById(h)?.scrollIntoView({block:"start"});
+  }
+}
+document.addEventListener("click",e=>{
+  const row=e.target.closest("[data-case]");
+  if(row){ e.preventDefault(); location.hash="#case/"+row.dataset.case; window.scrollTo({top:0}); return; }
+  const nav=e.target.closest("button[data-nav='home']");
+  if(nav){ location.hash="#home"; window.scrollTo({top:0}); }
+});
+window.addEventListener("hashchange",()=>{ route(); window.scrollTo({top:0}); });
+route();
+</script>
+</body>
+</html>
